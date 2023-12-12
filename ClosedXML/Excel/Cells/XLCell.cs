@@ -434,6 +434,19 @@ namespace ClosedXML.Excel
                 return false;
             }
 
+            return TryConvertValue(currentValue, out value);
+        }
+
+        public Boolean TryGetCachedValue<T>(out T value)
+        {
+            XLCellValue currentValue;
+            currentValue = CachedValue;
+
+            return TryConvertValue(currentValue, out value);
+        }
+
+        static private Boolean TryConvertValue<T>(XLCellValue currentValue, out T value)
+        {
             var targetType = typeof(T);
             var isNullable = targetType.IsNullableType();
             if (isNullable && currentValue.TryConvert(out Blank _))

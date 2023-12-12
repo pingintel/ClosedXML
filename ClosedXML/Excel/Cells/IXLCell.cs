@@ -285,7 +285,7 @@ namespace ClosedXML.Excel
         /// <remarks>Shortcut for <c>Value.GetNumber()</c></remarks>
         /// <exception cref="InvalidCastException">If the value of the cell is not a number.</exception>
         Double GetDouble();
-        
+
         /// <summary>
         /// Gets the cell's value as a String.
         /// </summary>
@@ -345,6 +345,13 @@ namespace ClosedXML.Excel
         /// <summary>
         /// <inheritdoc cref="TryGetValue{T}"/>
         /// </summary>
+        /// <remarks>Conversion logic is identical with <see cref="TryGetValue{T}"/> but for cached value.</remarks>
+        /// <returns></returns>
+        Boolean TryGetCachedValue<T>(out T value);
+
+        /// <summary>
+        /// <inheritdoc cref="TryGetValue{T}"/>
+        /// </summary>
         /// <remarks>Conversion logic is identical with <see cref="TryGetValue{T}"/>.</remarks>
         /// <typeparam name="T">The requested type into which will the value be converted.</typeparam>
         /// <exception cref="InvalidCastException">If the value can't be converted to the type of T</exception>
@@ -369,7 +376,7 @@ namespace ClosedXML.Excel
         /// Returns the value of the cell if it formatted as a rich text.
         /// </summary>
         IXLRichText GetRichText();
-        
+
         IXLCells InsertCellsAbove(int numberOfRows);
 
         IXLCells InsertCellsAfter(int numberOfColumns);
